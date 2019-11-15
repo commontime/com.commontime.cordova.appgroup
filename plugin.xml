@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.commontime.cordova.appgroup"
+        version="1.0.0">
+
+  <name>AppGroup</name>
+
+  <asset src="www/appgroup.js" target="js/appgroup.js"/>
+
+  <js-module src="www/appgroup.js" name="appgroup">
+    <clobbers target="appgroup" />
+  </js-module>
+
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/widget">
+      <feature name="AppGroup">
+        <param name="ios-package" value="AppGroup" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/AppGroup.h" target-dir="AppGroup"/>
+    <source-file src="src/ios/AppGroup.m" target-dir="AppGroup"/>
+
+    <config-file target="*-Debug.plist" parent="com.apple.security.application-groups">
+      <array>
+        <string>group.$PACKAGE_NAME</string>
+      </array>
+    </config-file>
+    <config-file target="*-Release.plist" parent="com.apple.security.application-groups">
+      <array>
+        <string>group.$PACKAGE_NAME</string>
+      </array>
+    </config-file>
+
+  </platform>
+
+</plugin>

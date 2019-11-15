@@ -1,0 +1,27 @@
+{
+  "name": "com.commontime.cordova.appgroup",
+  "version": "1.0.0",
+  "description": "Commontime cordova appgroup plugin.",
+  "cordova": {
+    "id": "com.commontime.cordova.appgroup",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "URL"
+  },
+  "keywords": [
+    "cordova",
+    "commontime"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Commontime Ltd",
+  "license": "MIT"
+}
