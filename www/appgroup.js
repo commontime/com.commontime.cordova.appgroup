@@ -9,5 +9,11 @@ module.exports = {
     },
     setApplicationBadgeNumber: function (successCallback, errorCallback, number) {
         cordova.exec(successCallback, errorCallback, "AppGroup", "setApplicationBadgeNumber", [number]);
+    },
+    add: function (successCallback, errorCallback, key, value) {
+        cordova.exec(successCallback, errorCallback, "AppGroup", "add", [key, value]);
+    },
+    remove: function (successCallback, errorCallback, key) {
+        cordova.exec(successCallback, errorCallback, "AppGroup", "remove", [key]);
     }
 };

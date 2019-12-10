@@ -54,5 +54,35 @@
     @finally {}    
     [self.commandDelegate sendPluginResult: pluginResult callbackId:command.callbackId];
 }
+- (void) add: (CDVInvokedUrlCommand*) command
+{
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unable to add data to the app group"];
+    NSString *key = [command.arguments objectAtIndex:0];
+    NSString *value = [command.arguments objectAtIndex:1];
+    @try {
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[NSString stringWithFormat:@"group.%@", [[NSBundle mainBundle] bundleIdentifier]]];
+        [defaults setObject:value forKey:key];
+        [defaults synchronize];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+    [self.commandDelegate sendPluginResult: pluginResult callbackId:command.callbackId];
+}
+
+- (void) remove: (CDVInvokedUrlCommand*) command
+{
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unable to remove data from the app group"];
+    NSString *key = [command.arguments objectAtIndex:0];
+    @try {
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:[NSString stringWithFormat:@"group.%@", [[NSBundle mainBundle] bundleIdentifier]]];
+        [defaults removeObjectForKey:key];
+        [defaults synchronize];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    @catch (NSException *exception) {}
+    @finally {}
+    [self.commandDelegate sendPluginResult: pluginResult callbackId:command.callbackId];
+}
 
 @end
